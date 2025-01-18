@@ -77,32 +77,35 @@ headerRow.appendChild(headerCell3); // Harmadik fejléc cella hozzáadása a fej
 const tbody = document.createElement('tbody'); // Táblázat törzs részének létrehozása
 table.appendChild(tbody); // Törzs hozzáadása a táblázathoz
 
-
-for (let i = 1; i < array.length; i++) { // Iterálunk végig az array elemein
-    const row = document.createElement('tr'); // Létrehozunk egy új sort
-    tbody.appendChild(row); // Hozzáadjuk az új sort a tbody-hoz
-
-    const cell1 = document.createElement('td'); // Létrehozunk egy új cellát az első oszlophoz
-    cell1.innerHTML = array[i].cell1; // Beállítjuk a cella tartalmát az array[i].cell1 értékére
-    row.appendChild(cell1); // Hozzáadjuk az első cellát a sorhoz
-
-    const cell2 = document.createElement('td'); // Létrehozunk egy új cellát a második oszlophoz
-    cell2.innerHTML = array[i].cell2; // Beállítjuk a cella tartalmát az array[i].cell2 értékére
-    row.appendChild(cell2); // Hozzáadjuk a második cellát a sorhoz
-
-    const cell3 = document.createElement('td'); // Létrehozunk egy új cellát a harmadik oszlophoz
-    cell3.innerHTML = array[i].cell3; // Beállítjuk a cella tartalmát az array[i].cell3 értékére
-    cell3.colSpan = "2"; // Colspant adunk a cell3-nak
-    row.appendChild(cell3); // Hozzáadjuk a harmadik cellát a sorhoz
+function renderTable(){ //Függvény létrehozása
+    for (let i = 1; i < array.length; i++) { // Iterálunk végig az array elemein
+        const row = document.createElement('tr'); // Létrehozunk egy új sort
+        tbody.appendChild(row); // Hozzáadjuk az új sort a tbody-hoz
     
-
-    if (array[i].cell4 !== undefined){ // Megnézzük, hogy a cell4 undefiened e
-
-        cell3.colSpan = "1"; // Levesszük a colspant
-
-        const cell4 = document.createElement('td'); // Létrehozunk egy új cellát a harmadik oszlophoz
-        cell4.innerHTML = array[i].cell4; // Beállítjuk a cella tartalmát az array[i].cell3 értékére
-        row.appendChild(cell4); // Hozzáadjuk a negyedik cellát a sorhoz
-
+        const cell1 = document.createElement('td'); // Létrehozunk egy új cellát az első oszlophoz
+        cell1.innerHTML = array[i].cell1; // Beállítjuk a cella tartalmát az array[i].cell1 értékére
+        row.appendChild(cell1); // Hozzáadjuk az első cellát a sorhoz
+    
+        const cell2 = document.createElement('td'); // Létrehozunk egy új cellát a második oszlophoz
+        cell2.innerHTML = array[i].cell2; // Beállítjuk a cella tartalmát az array[i].cell2 értékére
+        row.appendChild(cell2); // Hozzáadjuk a második cellát a sorhoz
+    
+        const cell3 = document.createElement('td'); // Létrehozunk egy új cellát a harmadik oszlophoz
+        cell3.innerHTML = array[i].cell3; // Beállítjuk a cella tartalmát az array[i].cell3 értékére
+        cell3.colSpan = "2"; // Colspant adunk a cell3-nak
+        row.appendChild(cell3); // Hozzáadjuk a harmadik cellát a sorhoz
+        
+    
+        if (array[i].cell4 !== undefined){ // Megnézzük, hogy a cell4 undefiened e
+    
+            cell3.colSpan = "1"; // Levesszük a colspant
+    
+            const cell4 = document.createElement('td'); // Létrehozunk egy új cellát a harmadik oszlophoz
+            cell4.innerHTML = array[i].cell4; // Beállítjuk a cella tartalmát az array[i].cell3 értékére
+            row.appendChild(cell4); // Hozzáadjuk a negyedik cellát a sorhoz
+    
+        }
     }
 }
+
+renderTable() //Függvény meghívása
