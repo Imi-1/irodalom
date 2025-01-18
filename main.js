@@ -92,83 +92,17 @@ for (let i = 1; i < array.length; i++) { // Iterálunk végig az array elemein
 
     const cell3 = document.createElement('td'); // Létrehozunk egy új cellát a harmadik oszlophoz
     cell3.innerHTML = array[i].cell3; // Beállítjuk a cella tartalmát az array[i].cell3 értékére
+    cell3.colSpan = "2"; // Colspant adunk a cell3-nak
     row.appendChild(cell3); // Hozzáadjuk a harmadik cellát a sorhoz
+    
 
-    const cell4 = document.createElement('td'); // Létrehozunk egy új cellát a harmadik oszlophoz
-    cell3.innerHTML = array[i].cell4; // Beállítjuk a cella tartalmát az array[i].cell3 értékére
-    row.appendChild(cell4); // Hozzáadjuk a negyedik cellát a sorhoz
+    if (array[i].cell4 !== undefined){ // Megnézzük, hogy a cell4 undefiened e
+
+        cell3.colSpan = "1"; // Levesszük a colspant
+
+        const cell4 = document.createElement('td'); // Létrehozunk egy új cellát a harmadik oszlophoz
+        cell4.innerHTML = array[i].cell4; // Beállítjuk a cella tartalmát az array[i].cell3 értékére
+        row.appendChild(cell4); // Hozzáadjuk a negyedik cellát a sorhoz
+
+    }
 }
-
-
-// const row1 = document.createElement('tr'); // Első sor létrehozása
-// tbody.appendChild(row1); // Első sor hozzáadása a táblázat törzséhez
-
-// const row1Cell1 = document.createElement('td'); // Első cella létrehozása az első sorban
-// row1Cell1.innerHTML = array[1].cell1; // Szöveg beállítása az első cellában
-// row1.appendChild(row1Cell1); // Első cella hozzáadása az első sorhoz
-
-// const row1Cell2 = document.createElement('td'); // Második cella létrehozása az első sorban
-// row1Cell2.innerHTML = array[1].cell2; // Szöveg beállítása a második cellában
-// row1.appendChild(row1Cell2); // Második cella hozzáadása az első sorhoz
-
-// const row1Cell3 = document.createElement('td'); // Harmadik cella létrehozása az első sorban
-// row1Cell3.innerHTML = array[1].cell3; // Szöveg beállítása a harmadik cellában
-// row1.appendChild(row1Cell3); // Harmadik cella hozzáadása az első sorhoz
-
-// const row1Cell4 = document.createElement('td'); // Negyedik cella létrehozása az első sorban
-// row1Cell4.innerHTML = array[1].cell4; // Szöveg beállítása a negyedik cellában
-// row1.appendChild(row1Cell4); // Negyedik cella hozzáadása az első sorhoz
-
-// const row2 = document.createElement('tr'); // Második sor létrehozása
-// tbody.appendChild(row2); // Második sor hozzáadása a táblázat törzséhez
-
-// const row2Cell1 = document.createElement('td'); // Első cella létrehozása a második sorban
-// row2Cell1.innerHTML = array[2].cell1; // Szöveg beállítása az első cellában
-// row2.appendChild(row2Cell1); // Első cella hozzáadása a második sorhoz
-
-// const row2Cell2 = document.createElement('td'); // Második cella létrehozása a második sorban
-// row2Cell2.innerHTML = array[2].cell2; // Szöveg beállítása a második cellában
-// row2.appendChild(row2Cell2); // Második cella hozzáadása a második sorhoz
-
-// const row2Cell3 = document.createElement('td'); // Harmadik cella létrehozása a második sorban
-// row2Cell3.colSpan = 2; // Harmadik cella oszlopainak összevonása
-// row2Cell3.innerHTML = array[2].cell3; // Szöveg beállítása a harmadik cellában
-// row2.appendChild(row2Cell3); // Harmadik cella hozzáadása a második sorhoz
-
-// const row3 = document.createElement('tr'); // Harmadik sor létrehozása
-// tbody.appendChild(row3); // Harmadik sor hozzáadása a táblázat törzséhez
-
-// const row3Cell1 = document.createElement('td'); // Első cella létrehozása a harmadik sorban
-// row3Cell1.innerHTML = array[3].cell1; // Szöveg beállítása az első cellában
-// row3.appendChild(row3Cell1); // Első cella hozzáadása a harmadik sorhoz
-
-// const row3Cell2 = document.createElement('td'); // Második cella létrehozása a harmadik sorban
-// row3Cell2.innerHTML = array[3].cell2; // Szöveg beállítása a második cellában
-// row3.appendChild(row3Cell2); // Második cella hozzáadása a harmadik sorhoz
-
-// const row3Cell3 = document.createElement('td'); // Harmadik cella létrehozása a harmadik sorban
-// row3Cell3.innerHTML = array[3].cell3; // Szöveg beállítása a harmadik cellában
-// row3.appendChild(row3Cell3); // Harmadik cella hozzáadása a harmadik sorhoz
-
-// const row3Cell4 = document.createElement('td'); // Negyedik cella létrehozása a harmadik sorban
-// row3Cell4.innerHTML = array[3].cell4; // Szöveg beállítása a negyedik cellában
-// row3.appendChild(row3Cell4); // Negyedik cella hozzáadása a harmadik sorhoz
-
-// const row4 = document.createElement('tr'); // Negyedik sor létrehozása
-// tbody.appendChild(row4); // Negyedik sor hozzáadása a táblázat törzséhez
-
-// const row4Cell1 = document.createElement('td'); // Első cella létrehozása a negyedik sorban
-// row4Cell1.innerHTML = array[4].cell1; // Szöveg beállítása az első cellában
-// row4.appendChild(row4Cell1); // Első cella hozzáadása a negyedik sorhoz
-
-// const row4Cell2 = document.createElement('td'); // Második cella létrehozása a negyedik sorban
-// row4Cell2.innerHTML = array[4].cell2; // Szöveg beállítása a második cellában
-// row4.appendChild(row4Cell2); // Második cella hozzáadása a negyedik sorhoz
-
-// const row4Cell3 = document.createElement('td'); // Harmadik cella létrehozása a negyedik sorban
-// row4Cell3.innerHTML = array[4].cell3; // Szöveg beállítása a harmadik cellában
-// row4.appendChild(row4Cell3); // Harmadik cella hozzáadása a negyedik sorhoz
-
-// const row4Cell4 = document.createElement('td'); // Negyedik cella létrehozása a negyedik sorban
-// row4Cell4.innerHTML = array[4].cell4; // Szöveg beállítása a negyedik cellában
-// row4.appendChild(row4Cell4); // Negyedik cella hozzáadása a negyedik sorhoz
