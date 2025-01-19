@@ -111,7 +111,8 @@ function renderTable(){ //Függvény létrehozása
 renderTable() //Függvény meghívása
 
 
-form.addEventListener('submit', function(e) {
+const form = document.getElementById('form'); // A form elemet kérjük le az ID alapján
+form.addEventListener('submit', function(e) { // Eseményfigyelőt adunk a submit eseményre
   e.preventDefault(); // Megakadályozzuk az alapértelmezett form beküldését
 
   const cell1HtmlElement = document.getElementById('kolto_nev'); // Költő nevének input mezője
