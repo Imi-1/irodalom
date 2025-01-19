@@ -36,35 +36,40 @@ const table = document.createElement('table'); // Táblázat létrehozása
 document.body.appendChild(table); // Táblázat hozzáadása a dokumentum törzséhez
 
 
+function generateColgroup(){ //Függvény létrehozása
+  
+  const colgroup = document.createElement('colgroup');  // Létrehozza a <colgroup> elemet
+  table.appendChild(colgroup);  // Hozzáadja a <colgroup> elemet a táblázathoz
 
-const colgroup = document.createElement('colgroup'); // Oszlopcsoport létrehozása
-table.appendChild(colgroup); // Oszlopcsoport hozzáadása a táblázathoz
+  for(let i = 0; i < 3; i++){  // Három oszlopot hoz létre a colgroup számára
+      const col = document.createElement('col');  // Létrehozza a <col> elemet
 
-const col1 = document.createElement('col'); // Első oszlop létrehozása
-col1.className = "colored-column"; // Színezett oszlop osztályának beállítása
-colgroup.appendChild(col1); // Első oszlop hozzáadása az oszlopcsoporthoz
+      col.className = (i === 0 || i === 2) ? "colored-column" : "";  // A megfelelő indexeknél hozzáadja a "colored-column" osztályt
 
-const col2 = document.createElement('col'); // Második oszlop létrehozása
-colgroup.appendChild(col2); // Második oszlop hozzáadása az oszlopcsoporthoz
-
-const col3 = document.createElement('col'); // Harmadik oszlop létrehozása
-col3.className = "colored-column"; // Színezett oszlop osztályának beállítása
-colgroup.appendChild(col3); // Harmadik oszlop hozzáadása az oszlopcsoporthoz
-
-
-
-
-const thead = document.createElement('thead'); // Fejléc rész létrehozása
-table.appendChild(thead); // Fejléc hozzáadása a táblázathoz
-
-const headerRow = document.createElement('tr'); // Fejléc sor létrehozása
-thead.appendChild(headerRow); // Fejléc sor hozzáadása a fejléc részhez
-
-for(const i of Object.values(array[0])){ // Végigmegy az array első objektumán ami tartalmazza a fejléc elemeit
-  const headerCell = document.createElement('th'); // Létrehozom a cellát a fejlécben
-  headerCell.innerHTML = i; // Beállítom a cella szövegét a tömb segítségével
-  headerRow.appendChild(headerCell); // Hozzáadom a cellát a fejléc sorához
+      colgroup.appendChild(col);  // Hozzáadja a <col> elemet a <colgroup> elemhez
+  }
 }
+
+generateColgroup() //Függvény meghívása
+
+
+function createHeader(){//Függvény létrehozása
+
+  const thead = document.createElement('thead'); // Fejléc rész létrehozása
+  table.appendChild(thead); // Fejléc hozzáadása a táblázathoz
+  
+  const headerRow = document.createElement('tr'); // Fejléc sor létrehozása
+  thead.appendChild(headerRow); // Fejléc sor hozzáadása a fejléc részhez
+  
+  for(const i of Object.values(array[0])){ // Végigmegy az array első objektumán ami tartalmazza a fejléc elemeit
+    const headerCell = document.createElement('th'); // Létrehozom a cellát a fejlécben
+    headerCell.innerHTML = i; // Beállítom a cella szövegét a tömb segítségével
+    headerRow.appendChild(headerCell); // Hozzáadom a cellát a fejléc sorához
+  }
+
+}
+
+createHeader() //Függvény meghívása
 
 
 const tbody = document.createElement('tbody'); // Táblázat törzs részének létrehozása
