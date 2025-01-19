@@ -133,24 +133,18 @@ form.addEventListener('submit', function(e) { // Eseményfigyelőt adunk a submi
   const cell3Value = cell3HtmlElement.value; // Első szerelem értéke
   const cell4Value = cell4CheckboxElement.checked ? cell4HtmlElement.value : undefined; // Második szerelem csak akkor, ha a checkbox be van jelölve
 
-  if(cell1Value === "") { // Ellenőrizzük, hogy a költő neve input mezője üres-e
-    const parentElement = cell1HtmlElement.parentElement; // Megkeressük az uralkodó input mezőjének szülőelemét
-    const error = parentElement.querySelector('.error'); // Az uralkodó mező szülőelemében keresünk egy "error" osztályú elemet
-    error.innerHTML = "Kötelező megadni a költő nevét!"; // Beállítjuk a hibaüzenetet
-    valid = false; // A valid változó értékét hamisra állítjuk
-}
-if(cell2Value === "") { // Ellenőrizzük, hogy a korszak input mezője üres-e
-    const parentElement = cell2HtmlElement.parentElement; // Megkeressük az esemény input mezőjének szülőelemét
-    const error = parentElement.querySelector('.error'); // Az esemény mező szülőelemében keresünk egy "error" osztályú elemet
-    error.innerHTML = "Kötelező megadni a korszakot!"; // Beállítjuk a hibaüzenetet
-    valid = false; // A valid változó értékét hamisra állítjuk
-}
-if(cell3Value === "") { // Ellenőrizzük, hogy az eslő szerelme input mezője üres-e
-    const parentElement = cell3HtmlElement.parentElement; // Megkeressük az évszám input mezőjének szülőelemét
-    const error = parentElement.querySelector('.error'); // Az évszám mező szülőelemében keresünk egy "error" osztályú elemet
-    error.innerHTML = "Kötelező megadni az első szerelmét!"; // Beállítjuk a hibaüzenetet
-    valid = false; // A valid változó értékét hamisra állítjuk
-}
+if(!validateFormInputFields(cell1HtmlElement, "Kötelező megadni a költő nevét!")){ //Megnézi, hogy a validateFormInputFields false-e
+  valid = false; // Amennyiben false volt a valid értékét false-ra állítja
+};
+
+if(!validateFormInputFields(cell2HtmlElement, "Kötelező megadni a korszakot!")){ //Megnézi, hogy a validateFormInputFields false-e
+  valid = false; // Amennyiben false volt a valid értékét false-ra állítja
+};
+
+if(!validateFormInputFields(cell3HtmlElement, "Kötelező megadni az első szerelmét!")){ //Megnézi, hogy a validateFormInputFields false-e
+  valid = false; // Amennyiben false volt a valid értékét false-ra állítja
+};
+
 if(valid){
   const newElement = {
     cell1: cell1Value, // Költő neve
@@ -158,7 +152,7 @@ if(valid){
     cell3: cell3Value, // Első szerelem
     cell4: cell4Value // Második szerelem
   }
-  
+
   array.push(newElement); // Új objektum hozzáadása az array-hez
   tbody.innerHTML = ''; // Táblázat tartalmának törlése
   renderTable(); // Táblázat újrarenderelése
@@ -167,3 +161,14 @@ if(valid){
 
   
 });
+
+function validateFormInputFields(inputElement, errormessage){ // Függvény létrehozésa két bemeneti értékkel
+  let validation = true; // Kezdőértékként igazra állítjuk a validációs változót
+  if(inputElement.value === ""){ // Ellenőrizzük, hogy az uralkodó input mezője üres-e
+      const parentElement = inputElement.parentElement; // Megkeressük az évszám input mezőjének szülőelemét
+      const error = parentElement.querySelector('.error'); // Az évszám mező szülőelemében keresünk egy "error" osztályú elemet
+      error.innerHTML = errormessage; // Beállítjuk a hibaüzenetet
+      validation = false; // A valid változó értékét hamisra állítjuk
+  }
+  return validation;  //Vissaztér a validation értékével, ami igaz vagy hamis lehet
+}
