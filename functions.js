@@ -14,7 +14,7 @@ function generateColgroup(){
         colgroup.appendChild(col);  // Hozzáadja a <col> elemet a <colgroup> elemhez
     }
 }
-
+ 
 /**
  * Létrehozza a fejlécet a táblázathoz, és beállítja a megfelelő címeket.
  * A "Szerelmek" fejléc cella két oszlopot ölel át.
