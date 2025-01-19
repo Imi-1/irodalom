@@ -133,24 +133,21 @@ form.addEventListener('submit', function(e) { // Eseményfigyelőt adunk a submi
   const cell3Value = cell3HtmlElement.value; // Első szerelem értéke
   const cell4Value = cell4CheckboxElement.checked ? cell4HtmlElement.value : undefined; // Második szerelem csak akkor, ha a checkbox be van jelölve
 
-if(!validateFormInputFields(cell1HtmlElement, "Kötelező megadni a költő nevét!")){ //Megnézi, hogy a validateFormInputFields false-e
+if(!validateFormInputFields(cell1HtmlElement, cell1Value, "Kötelező megadni a költő nevét!")){ //Megnézi, hogy a validateFormInputFields false-e
   valid = false; // Amennyiben false volt a valid értékét false-ra állítja
 };
 
-if(!validateFormInputFields(cell2HtmlElement, "Kötelező megadni a korszakot!")){ //Megnézi, hogy a validateFormInputFields false-e
+if(!validateFormInputFields(cell2HtmlElement, cell2Value, "Kötelező megadni a korszakot!")){ //Megnézi, hogy a validateFormInputFields false-e
   valid = false; // Amennyiben false volt a valid értékét false-ra állítja
 };
 
-if(!validateFormInputFields(cell3HtmlElement, "Kötelező megadni az első szerelmét!")){ //Megnézi, hogy a validateFormInputFields false-e
+if(!validateFormInputFields(cell3HtmlElement, cell3Value, "Kötelező megadni az első szerelmét!")){ //Megnézi, hogy a validateFormInputFields false-e
   valid = false; // Amennyiben false volt a valid értékét false-ra állítja
 };
 
-if(cell4Value!==undefined){  //Megnézi, hogy a cell4Value értéke undefined-e
-  const parentElement = cell4HtmlElement.parentElement; // Megkeressük az évszám input mezőjének szülőelemét
-  const error = parentElement.querySelector('.error'); // Az évszám mező szülőelemében keresünk egy "error" osztályú elemet
-  error.innerHTML = "Meg kell adni a költő második szerelmét!"; // Beállítjuk a hibaüzenetet
-  valid = false; // A valid változó értékét hamisra állítjuk
-}
+if(!validateFormInputFields(cell4HtmlElement, cell4Value, "Kötelező megadni a második szerelmét!")){ //Megnézi, hogy a validateFormInputFields false-e
+  valid = false; // Amennyiben false volt a valid értékét false-ra állítja
+};
 
 if(valid){
   const newElement = {
@@ -168,10 +165,9 @@ if(valid){
 
   
 });
-
-function validateFormInputFields(inputElement, errormessage){ // Függvény létrehozésa két bemeneti értékkel
+function validateFormInputFields(inputElement,inputValue, errormessage){ // Függvény létrehozása három bemeneti értékkel
   let validation = true; // Kezdőértékként igazra állítjuk a validációs változót
-  if(inputElement.value === ""){ // Ellenőrizzük, hogy az uralkodó input mezője üres-e
+  if(inputValue === ""){ // Ellenőrizzük, hogy az uralkodó input mezője üres-e
       const parentElement = inputElement.parentElement; // Megkeressük az évszám input mezőjének szülőelemét
       const error = parentElement.querySelector('.error'); // Az évszám mező szülőelemében keresünk egy "error" osztályú elemet
       error.innerHTML = errormessage; // Beállítjuk a hibaüzenetet
