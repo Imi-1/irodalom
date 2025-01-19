@@ -163,6 +163,7 @@ if(valid){
 
   
 });
+
 function validateFormInputFields(inputElement,inputValue, errormessage){ // Függvény létrehozása három bemeneti értékkel
   let validation = true; // Kezdőértékként igazra állítjuk a validációs változót
   if(inputValue === ""){ // Ellenőrizzük, hogy az input mező üres-e a cella értékével
@@ -173,3 +174,81 @@ function validateFormInputFields(inputElement,inputValue, errormessage){ // Füg
   }
   return validation;  //Vissaztér a validation értékével, ami igaz vagy hamis lehet
 }
+
+
+function generateForm() {  // Függvény létrehozása, amely létrehozza és hozzáadja az űrlapot az oldalhoz
+  const form = document.createElement('form'); // Létrehoz egy új <form> elemet
+  form.id = 'form'; // Beállítja a form ID-jét, hogy később könnyen hivatkozhassunk rá
+  form.action = '#'; // Beállítja az űrlap action attribútumát, amely azt jelzi, hogy hová küldjük el az adatokat (itt a # azt jelzi, hogy nem küldjük el)
+
+  const fields = [ // Az űrlap mezőinek adatstruktúrája: minden mező egy objektum, amely tartalmazza a címkét (label), az id-t és a nevét (name)
+    { 
+        label: 'Költő neve:',            // A mező a költő nevét tárolja
+        id: 'kolto_nev',                 // A mező egyedi azonosítója
+        name: 'kolto_nev'                // A mező neve, amit a kód használ
+    },  
+    
+    { 
+        label: 'Korszak:',               // A költő korszakának megnevezése
+        id: 'korszak',                   // A mező egyedi azonosítója
+        name: 'korszak'                  // A mező neve, amit a kód használ
+    },  
+    
+    { 
+        label: 'Szerelme:',              // A költő szerelmének neve
+        id: 'szerelem1',                 // A mező egyedi azonosítója
+        name: 'szerelem1'                // A mező neve, amit a kód használ
+    },  
+    
+    { 
+        label: 'Volt másik szerelme?',   // Ellenőrző mező, hogy volt-e másik szerelme
+        id: 'masodik',                   // A mező egyedi azonosítója
+        name: 'masodik',                 // A mező neve, amit a kód használ
+        type: 'checkbox'                 // Checkbox mező a logikai értékhez
+    },  
+    
+    { 
+        label: 'Szerelme:',              // A költő második szerelmének neve
+        id: 'szerelem2',                 // A mező egyedi azonosítója
+        name: 'szerelem2'                // A mező neve, amit a kód használ
+    }
+  ];
+
+  // Iterálunk a fields tömb minden egyes elemén (mezőjén)
+  for (const i of fields) {
+      const fieldDiv = document.createElement('div'); // Létrehoz egy új <div> elemet, amely tartalmazza a mezőt
+      fieldDiv.className = 'field'; // Beállítja a div osztályát, hogy stílusokat rendeljen hozzá
+
+      const label = document.createElement('label'); // Létrehoz egy <label> elemet
+      label.htmlFor = i.id; // A label-t összekapcsolja az input mezővel az id alapján
+      label.textContent = i.label; // A label szövegét beállítja
+      fieldDiv.appendChild(label); // A label-t hozzáadja a mező div-hez
+
+      fieldDiv.appendChild(document.createElement('br')); // Sortörést ad hozzá a div-hez, hogy ne legyenek egy sorban az elemek
+
+      const input = document.createElement('input'); // Létrehoz egy új <input> elemet
+      input.type = i.type || 'text'; // Beállítja az input típusát (alapértelmezett típus 'text', de ha checkbox, akkor checkbox)
+      input.id = i.id; // Beállítja az input id-ját
+      input.name = i.name; // Beállítja az input nevét
+      fieldDiv.appendChild(input); // Hozzáadja az input mezőt a div-hez
+
+      fieldDiv.appendChild(document.createElement('br')); // Sortörést ad hozzá az input mező után
+      fieldDiv.appendChild(document.createElement('br')); // Még egy sortörést, hogy jól nézzen ki
+
+      const errorDiv = document.createElement('div'); // Létrehoz egy új div-et, amely tárolni fogja a hibaüzeneteket
+      errorDiv.className = 'error'; // Hozzáadja a hibaosztályt, hogy stílusozni lehessen
+      fieldDiv.appendChild(errorDiv); // Hozzáadja a hibadiv-et a mező div-hez
+
+      form.appendChild(fieldDiv); // Hozzáadja a mezőt tartalmazó div-et az űrlaphoz
+  }
+
+  const button = document.createElement('button'); // Létrehoz egy új gombot
+  button.type = 'submit'; // Beállítja a gomb típusát 'submit'-ra, hogy elküldje az űrlapot
+  button.textContent = 'Hozzáadás'; // Beállítja a gomb szövegét
+  form.appendChild(button); // Hozzáadja a gombot az űrlaphoz
+
+  document.body.appendChild(form); // Hozzáadja a formot a dokumentum body-jához, így az megjelenik az oldalon
+}
+
+
+generateForm()//Függvény meghívása
