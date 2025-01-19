@@ -109,3 +109,31 @@ function renderTable(){ //Függvény létrehozása
 }
 
 renderTable() //Függvény meghívása
+
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault(); // Megakadályozzuk az alapértelmezett form beküldését
+
+  const cell1HtmlElement = document.getElementById('kolto_nev'); // Költő nevének input mezője
+  const cell2HtmlElement = document.getElementById('korszak'); // Korszak input mezője
+  const cell3HtmlElement = document.getElementById('szerelem1'); // Első szerelem input mezője
+  const cell4CheckboxElement = document.getElementById('masodik'); // Második szerelem checkbox
+  const cell4HtmlElement = document.getElementById('szerelem2'); // Második szerelem input mezője
+
+  const cell1Value = cell1HtmlElement.value; // Költő nevének értéke
+  const cell2Value = cell2HtmlElement.value; // Korszak értéke
+  const cell3Value = cell3HtmlElement.value; // Első szerelem értéke
+  const cell4Value = cell4CheckboxElement.checked ? cell4HtmlElement.value : undefined; // Második szerelem csak akkor, ha a checkbox be van jelölve
+
+  const newElement = {
+      cell1: cell1Value, // Költő neve
+      cell2: cell2Value, // Korszak
+      cell3: cell3Value, // Első szerelem
+      cell4: cell4Value // Második szerelem
+  };
+
+  array.push(newElement); // Új objektum hozzáadása az array-hez
+
+  tbody.innerHTML = ''; // Táblázat tartalmának törlése
+  renderTable(); // Táblázat újrarenderelése
+});
