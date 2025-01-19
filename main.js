@@ -145,6 +145,13 @@ if(!validateFormInputFields(cell3HtmlElement, "Kötelező megadni az első szere
   valid = false; // Amennyiben false volt a valid értékét false-ra állítja
 };
 
+if(cell4Value!==undefined){  //Megnézi, hogy a cell4Value értéke undefined-e
+  const parentElement = cell4HtmlElement.parentElement; // Megkeressük az évszám input mezőjének szülőelemét
+  const error = parentElement.querySelector('.error'); // Az évszám mező szülőelemében keresünk egy "error" osztályú elemet
+  error.innerHTML = "Meg kell adni a költő második szerelmét!"; // Beállítjuk a hibaüzenetet
+  valid = false; // A valid változó értékét hamisra állítjuk
+}
+
 if(valid){
   const newElement = {
     cell1: cell1Value, // Költő neve
