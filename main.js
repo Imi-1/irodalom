@@ -60,18 +60,11 @@ table.appendChild(thead); // Fejléc hozzáadása a táblázathoz
 const headerRow = document.createElement('tr'); // Fejléc sor létrehozása
 thead.appendChild(headerRow); // Fejléc sor hozzáadása a fejléc részhez
 
-const headerCell1 = document.createElement('th'); // Első fejléc cella létrehozása
-headerCell1.innerHTML = array[0].cell1; // Szöveg beállítása az első cellában
-headerRow.appendChild(headerCell1); // Első fejléc cella hozzáadása a fejléc sorhoz
-
-const headerCell2 = document.createElement('th'); // Második fejléc cella létrehozása
-headerCell2.innerHTML = array[0].cell2; // Szöveg beállítása a második cellában
-headerRow.appendChild(headerCell2); // Második fejléc cella hozzáadása a fejléc sorhoz
-
-const headerCell3 = document.createElement('th'); // Harmadik fejléc cella létrehozása
-headerCell3.colSpan = 2; // Táblázat oszlopainak összevonása
-headerCell3.innerHTML = array[0].cell3; // Szöveg beállítása a harmadik cellában
-headerRow.appendChild(headerCell3); // Harmadik fejléc cella hozzáadása a fejléc sorhoz
+for(const i of Object.values(array[0])){ // Végigmegy az array első objektumán ami tartalmazza a fejléc elemeit
+  const headerCell = document.createElement('th'); // Létrehozom a cellát a fejlécben
+  headerCell.innerHTML = i; // Beállítom a cella szövegét a tömb segítségével
+  headerRow.appendChild(headerCell); // Hozzáadom a cellát a fejléc sorához
+}
 
 
 const tbody = document.createElement('tbody'); // Táblázat törzs részének létrehozása
