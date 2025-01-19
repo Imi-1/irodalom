@@ -19,7 +19,7 @@ function generateColgroup(){
  * Létrehozza a fejlécet a táblázathoz, és beállítja a megfelelő címeket.
  * A "Szerelmek" fejléc cella két oszlopot ölel át.
  */
-function createHeader(){  
+function createHeader(array){  
     const table = document.getElementById("tableID")//Létrehozunk egy új változót, ami a tableID id-jú táblázatot (table) tárolja
     const thead = document.createElement('thead');  // Fejléc rész létrehozása
     table.appendChild(thead);  // Fejléc hozzáadása a táblázathoz
@@ -27,7 +27,7 @@ function createHeader(){
     const headerRow = document.createElement('tr');  // Fejléc sor létrehozása
     thead.appendChild(headerRow);  // Fejléc sor hozzáadása a fejléc részhez
 
-    for(const i of Object.values(array[0])){  // Végigmegy az array első objektumán ami tartalmazza a fejléc elemeit. Az Object.values() egy beépített metódus, amely egy objektum összes értékét adja vissza egy tömbben. Itt azért hasznos mert egy összetett tömbbön nem lehet végigiterálni az objektumok értékén, ezért kell egy sima tömb.
+    for(const i of Object.values(array)){  // Végigmegy az array első objektumán ami tartalmazza a fejléc elemeit. Az Object.values() egy beépített metódus, amely egy objektum összes értékéből tömböt készít. Itt azért hasznos mert egy összetett tömbbön nem lehet végigiterálni az objektumok értékén, ezért kell egy sima tömb.
         const headerCell = document.createElement('th');  // Létrehozom a cellát a fejlécben
         headerCell.innerHTML = i;  // Beállítom a cella szövegét a tömb segítségével
 

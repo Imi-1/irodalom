@@ -38,7 +38,7 @@ document.body.appendChild(table); // Táblázat hozzáadása a dokumentum törzs
 
 generateColgroup() //Függvény meghívása
 
-createHeader() //Függvény meghívása
+createHeader(array[0]) //Függvény meghívása
 
 const tbody = document.createElement('tbody'); // Táblázat törzs részének létrehozása
 tbody.id="tbodyID"; //Id-t adok a tbodynak
