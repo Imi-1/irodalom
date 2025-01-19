@@ -115,6 +115,13 @@ const form = document.getElementById('form'); // A form elemet kérjük le az ID
 form.addEventListener('submit', function(e) { // Eseményfigyelőt adunk a submit eseményre
   e.preventDefault(); // Megakadályozzuk az alapértelmezett form beküldését
 
+  const thisForm = e.currentTarget; // Az esemény által kiváltott formot eltároljuk egy változóban.
+  const errorElements = thisForm.querySelectorAll('.error'); // Lekérjük az összes elemet, amely rendelkezik "error" osztállyal.
+  for (const i of errorElements) { // Iterálunk az "error" osztályú elemek felett.
+      i.innerHTML = ""; // Kitöröljük ezek tartalmát.
+  }
+  let valid = true; // Kezdőértékként igazra állítjuk a validációs változót.
+
   const cell1HtmlElement = document.getElementById('kolto_nev'); // Költő nevének input mezője
   const cell2HtmlElement = document.getElementById('korszak'); // Korszak input mezője
   const cell3HtmlElement = document.getElementById('szerelem1'); // Első szerelem input mezője
@@ -126,15 +133,37 @@ form.addEventListener('submit', function(e) { // Eseményfigyelőt adunk a submi
   const cell3Value = cell3HtmlElement.value; // Első szerelem értéke
   const cell4Value = cell4CheckboxElement.checked ? cell4HtmlElement.value : undefined; // Második szerelem csak akkor, ha a checkbox be van jelölve
 
+  if(cell1Value === "") { // Ellenőrizzük, hogy a költő neve input mezője üres-e
+    const parentElement = cell1HtmlElement.parentElement; // Megkeressük az uralkodó input mezőjének szülőelemét
+    const error = parentElement.querySelector('.error'); // Az uralkodó mező szülőelemében keresünk egy "error" osztályú elemet
+    error.innerHTML = "Kötelező megadni a költő nevét!"; // Beállítjuk a hibaüzenetet
+    valid = false; // A valid változó értékét hamisra állítjuk
+}
+if(cell2Value === "") { // Ellenőrizzük, hogy a korszak input mezője üres-e
+    const parentElement = cell2HtmlElement.parentElement; // Megkeressük az esemény input mezőjének szülőelemét
+    const error = parentElement.querySelector('.error'); // Az esemény mező szülőelemében keresünk egy "error" osztályú elemet
+    error.innerHTML = "Kötelező megadni a korszakot!"; // Beállítjuk a hibaüzenetet
+    valid = false; // A valid változó értékét hamisra állítjuk
+}
+if(cell3Value === "") { // Ellenőrizzük, hogy az eslő szerelme input mezője üres-e
+    const parentElement = cell3HtmlElement.parentElement; // Megkeressük az évszám input mezőjének szülőelemét
+    const error = parentElement.querySelector('.error'); // Az évszám mező szülőelemében keresünk egy "error" osztályú elemet
+    error.innerHTML = "Kötelező megadni az első szerelmét!"; // Beállítjuk a hibaüzenetet
+    valid = false; // A valid változó értékét hamisra állítjuk
+}
+if(valid){
   const newElement = {
-      cell1: cell1Value, // Költő neve
-      cell2: cell2Value, // Korszak
-      cell3: cell3Value, // Első szerelem
-      cell4: cell4Value // Második szerelem
-  };
-
+    cell1: cell1Value, // Költő neve
+    cell2: cell2Value, // Korszak
+    cell3: cell3Value, // Első szerelem
+    cell4: cell4Value // Második szerelem
+  }
+  
   array.push(newElement); // Új objektum hozzáadása az array-hez
-
   tbody.innerHTML = ''; // Táblázat tartalmának törlése
   renderTable(); // Táblázat újrarenderelése
+  thisForm.reset(); // A form mezőinek alaphelyzetbe állítása
+}
+
+  
 });
